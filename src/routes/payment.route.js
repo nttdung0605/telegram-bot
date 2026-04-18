@@ -1,0 +1,19 @@
+const express = require("express");
+const router = express.Router();
+
+const { createPayment } = require("../services/payos.service");
+
+router.post("/create", async (req, res) => {
+  try {
+    const { orderId, amount } = req.body;
+
+    const payment = await createPayment(orderId, amount);
+
+    res.json(payment);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Create payment failed" });
+  }
+});
+
+module.exports = router;
