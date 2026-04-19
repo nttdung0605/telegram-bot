@@ -6,9 +6,9 @@ const { handleWebhook } = require("../controllers/payment.controller");
 
 router.post("/create", async (req, res) => {
   try {
-    const { orderId, amount } = req.body;
+    const { orderCode, amount } = req.body;
 
-    const payment = await createPayment(orderId, amount);
+  const payment = await createPayment(orderCode, amount);
 
     res.json(payment);
   } catch (err) {

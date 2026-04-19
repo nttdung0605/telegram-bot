@@ -16,6 +16,7 @@ function generateSignature(data) {
 }
 
 async function createPayment(orderId, amount) {
+  const orderCode = Date.now();
   const body = {
     orderCode,
     amount: amount,
