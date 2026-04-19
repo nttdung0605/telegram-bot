@@ -75,18 +75,21 @@ async function handleMessage(msg, chatId, userName) {
       if (!order) return { text: "Bạn chưa có đơn 😅" };
   
       const bill = await buildBill(order);
-  
+      const orderCode = Date.now();
       await saveOrderToDB(
         chatId,
-        { ...order, userName },
+        { ...order, userName, orderCode},
         bill.total,
         "pending_payment"
       );
   
-      const payment = await createPayment(chatId, bill.total);
-      const qrRaw = payment.qrCode;
+      const payment = await createPayment(orderCode, bill.total);
 
-      const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(qrRaw)}`;  
+      if (!payment || !payment.qrCode) {
+        throw new Error("Không tạo được QR");
+      }
+
+      const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payment.qrCode)}`;
       clearOrder(chatId);
   
       return {
@@ -98,7 +101,8 @@ async function handleMessage(msg, chatId, userName) {
   📱 QR:
   ${qrImage}
   
-  ⏳ Đợi thanh toán...`
+  ⏳ Đợi thanh toán...`,
+  qrImage
       };
   
     } catch (err) {

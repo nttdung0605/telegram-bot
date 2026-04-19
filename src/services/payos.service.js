@@ -1,6 +1,6 @@
 const axios = require("axios");
 const crypto = require("crypto");
-const { PAYOS_CLIENT_ID, PAYOS_API_KEY,PAYOS_CHECKSUM_KEY } = require("../config");
+const { PAYOS_CLIENT_ID, PAYOS_API_KEY, PAYOS_CHECKSUM_KEY } = require("../config");
 
 
 function generateSignature(data) {
@@ -16,8 +16,9 @@ function generateSignature(data) {
 }
 
 async function createPayment(orderId, amount) {
+  const orderCode = Date.now();
   const body = {
-    orderCode: Number(orderId),
+    orderCode,
     amount: amount,
     description: `TS${orderId}`,
     returnUrl: "https://your-site.com/success",
@@ -40,6 +41,10 @@ async function createPayment(orderId, amount) {
       }
     }
   );
+
+  if (!res.data || res.data.code !== "00") {
+    throw new Error(res.data?.desc || "PayOS lỗi");
+  }
 
   return res.data.data;
 }

@@ -8,8 +8,6 @@ router.post("/payment", async (req, res) => {
   try {
     const data = req.body;
 
-    console.log("📩 PAYOS WEBHOOK:", data);
-
     const orderId = data.data.orderCode;
     const status = data.data.status;
 

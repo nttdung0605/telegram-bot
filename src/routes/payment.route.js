@@ -9,8 +9,6 @@ router.post("/webhook", async (req, res) => {
   try {
     const data = req.body;
 
-    console.log("🔥 WEBHOOK:", data);
-
     const orderCode = data.orderCode;
 
     const order = await Order.findOne({ chatId: orderCode });

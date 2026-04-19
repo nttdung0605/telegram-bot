@@ -19,6 +19,12 @@ function initBot() {
 
       await bot.sendMessage(chatId, res.text);
 
+      if (res.qrImage) {
+        await bot.sendPhoto(chatId, res.qrImage, {
+          caption: "📱 Quét QR để thanh toán"
+        });
+      }
+
     } catch (err) {
       console.error("BOT ERROR:", err);
     }
