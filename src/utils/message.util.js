@@ -96,7 +96,7 @@ async function handleMessage(msg, chatId, userName) {
   ${payment.checkoutUrl}
   
   📱 QR:
-  ${payment.qrImage}
+  ${qrImage}
   
   ⏳ Đợi thanh toán...`
       };
