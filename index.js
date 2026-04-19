@@ -9,5 +9,3 @@ async function start() {
 }
 
 start();
-
-console.log("BOT:", process.env.ADMIN_CHAT_ID);
