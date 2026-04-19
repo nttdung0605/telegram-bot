@@ -2,7 +2,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const paymentRoutes = require("./routes/payment.route");
-const bot = require("./services/telegram.service");
 
 const app = express();
 app.use(bodyParser.json());

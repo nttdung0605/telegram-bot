@@ -42,8 +42,6 @@ async function handleWebhook(req, res) {
       return res.status(401).json({ error: "Invalid signature" });
     }
 
-    console.log("✅ Signature verified");
-
     const orderCode = data?.data?.orderCode;
     const status = data?.data?.status;
 
