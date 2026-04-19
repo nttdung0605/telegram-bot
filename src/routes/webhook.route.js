@@ -4,7 +4,7 @@ const router = express.Router();
 const Order = require("../models/order.model");
 const bot = require("../services/telegram.service");
 
-router.post("/payment", async (req, res) => {
+router.post("/webhook", async (req, res) => {
   try {
     const data = req.body;
 
@@ -13,7 +13,7 @@ router.post("/payment", async (req, res) => {
 
     if (status === "PAID") {
       const order = await Order.findOneAndUpdate(
-        { chatId: orderCode },
+        { orderCode: orderCode },
         { status: "paid" },
         { new: true }
       );

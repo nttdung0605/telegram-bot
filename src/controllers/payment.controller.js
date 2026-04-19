@@ -6,8 +6,6 @@ async function handleWebhook(req, res) {
   try {
     const data = req.body;
 
-    console.log("🔥 WEBHOOK DATA:", data);
-
     const orderCode = data?.data?.orderCode;
     const status = data?.data?.status;
 
