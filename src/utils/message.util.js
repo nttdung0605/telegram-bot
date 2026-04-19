@@ -95,7 +95,8 @@ async function handleMessage(msg, chatId, userName) {
         text: `${bill.text}
   
   💳 Thanh toán tại:
-  ${payment.checkoutUrl}`
+  ${payment.checkoutUrl}`,
+  qrImage
       };
   
     } catch (err) {
