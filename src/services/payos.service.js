@@ -15,8 +15,7 @@ function generateSignature(data) {
     .digest("hex");
 }
 
-async function createPayment(orderId, amount) {
-  const orderCode = Date.now();
+async function createPayment(orderCode, amount) {
   const body = {
     orderCode,
     amount: amount,
