@@ -10,10 +10,4 @@ async function start() {
 
 start();
 
-// process.on("uncaughtException", (err) => {
-//   console.error("🔥 UNCAUGHT:", err);
-// });
-// 
-// process.on("unhandledRejection", (err) => {
-//   console.error("🔥 PROMISE ERROR:", err);
-// });
+console.log("BOT:", process.env.ADMIN_CHAT_ID);
