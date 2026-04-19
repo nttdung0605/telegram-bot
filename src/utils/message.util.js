@@ -103,6 +103,7 @@ async function handleMessage(msg, chatId, userName) {
   
     } catch (err) {
       console.error(err);
+      console.error("PAYMENT ERROR:", err.response?.data || err.message);
       return { text: "❌ Lỗi thanh toán 😅" };
     }
   }
