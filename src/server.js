@@ -8,7 +8,6 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use("/api/payment", paymentRoutes);
-app.use("/api/webhook", webhookRoutes);
 
 const PORT = process.env.PORT || 3000;
 
