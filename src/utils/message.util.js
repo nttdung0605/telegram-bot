@@ -89,20 +89,13 @@ async function handleMessage(msg, chatId, userName) {
         throw new Error("Không tạo được QR");
       }
 
-      const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payment.qrCode)}`;
       clearOrder(chatId);
   
       return {
         text: `${bill.text}
   
   💳 Thanh toán tại:
-  ${payment.checkoutUrl}
-  
-  📱 QR:
-  ${qrImage}
-  
-  ⏳ Đợi thanh toán...`,
-  qrImage
+  ${payment.checkoutUrl}`
       };
   
     } catch (err) {

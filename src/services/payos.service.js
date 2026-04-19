@@ -19,7 +19,7 @@ async function createPayment(orderCode, amount) {
   const body = {
     orderCode,
     amount: amount,
-    description: `TS${orderId}`,
+    description: `TS${orderCode}`,
     returnUrl: "https://your-site.com/success",
     cancelUrl: "https://your-site.com/cancel"
   };

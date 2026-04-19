@@ -8,12 +8,12 @@ router.post("/payment", async (req, res) => {
   try {
     const data = req.body;
 
-    const orderId = data.data.orderCode;
+    const orderCode = data.data.orderCode;
     const status = data.data.status;
 
     if (status === "PAID") {
       const order = await Order.findOneAndUpdate(
-        { chatId: orderId },
+        { chatId: orderCode },
         { status: "paid" },
         { new: true }
       );

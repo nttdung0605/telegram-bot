@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   chatId: String,
+  userName: String, 
+  orderCode: Number,
   items: Array,
   total: Number,
   status: {
