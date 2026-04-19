@@ -84,18 +84,16 @@ async function handleMessage(msg, chatId, userName) {
       );
   
       const payment = await createPayment(orderCode, bill.total);
-
-      if (!payment || !payment.qrCode) {
-        throw new Error("Không tạo được QR");
-      }
-
+      const qrImage = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(payment.qrCode)}`;  
       clearOrder(chatId);
   
       return {
         text: `${bill.text}
   
   💳 Thanh toán tại:
-  ${payment.checkoutUrl}`,
+  ${payment.checkoutUrl}
+
+  ⏳ Đợi thanh toán...`,
   qrImage
       };
   
