@@ -26,20 +26,24 @@ async function handleWebhook(req, res) {
     await bot.sendMessage(order.chatId, "✅ Thanh toán thành công!");
 
     // gửi admin
-    await bot.sendMessage(ADMIN_CHAT_ID, `
-📦 ĐƠN MỚI (ĐÃ THANH TOÁN)
-
-👤 ${order.userName}
-💰 ${order.total}đ
-    `);
-
-    res.sendStatus(200);
-
-  } catch (err) {
-    console.error("❌ WEBHOOK ERROR:", err);
-    res.sendStatus(500);
+    try {
+        await bot.sendMessage(ADMIN_CHAT_ID, `
+  📦 ĐƠN MỚI (ĐÃ THANH TOÁN)
+  
+  👤 ${order.userName}
+  💰 ${order.total}đ
+        `);
+      } catch (err) {
+        console.error("❌ Failed to send message to admin:", err);
+      }
+  
+      res.sendStatus(200);
+  
+    } catch (err) {
+      console.error("❌ WEBHOOK ERROR:", err);
+      res.sendStatus(500);
+    }
   }
-}
 
 module.exports = {
   handleWebhook
